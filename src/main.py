@@ -28,21 +28,20 @@ def count_file_len(path) :
 
 def files_complexity_repo(repo, method = 'len'):
     path = repo.path
-    files_len_count = collections.defaultdict(int)
+    files_complexity_count = collections.defaultdict(int)
     if method == 'len' :
         for file_path in repo.files() :
             key = os.path.relpath(file_path, path)
-            files_len_count[key] = count_file_len(file_path)
-        return files_len_count
+            files_complexity_count[key] = count_file_len(file_path)
+        return files_complexity_count
     elif method == 'cyclomatic' :
         path = repo.path
         path = path.absolute().as_posix()
         for commit in RepositoryMining(path).traverse_commits():
             for mod in commit.modifications :
-                print(mod.new_path ,mod.complexity)
-        return files_len_count
+                files_complexity_count[mod.new_path] = mod.complexity
+        return files_complexity_count
     elif method == 'otherMethod' :
-
         return None
 
 def main(url):
