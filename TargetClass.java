@@ -1,6 +1,6 @@
 package trainingcode;
 
-
+import it.me.giovanni
 import com.me.giuseppe;
 import com.me.alessandro;
 import com.me.TargetClass;
